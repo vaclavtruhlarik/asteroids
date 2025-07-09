@@ -40,6 +40,18 @@ def main():
 
         # Check for collisions
         for asteroid in asteroids:
+            # Check if asteroid collides with any shot
+            asteroid_killed = False
+            for shot in shots:
+                if asteroid.collides(shot):
+                    asteroid.split()
+                    shot.kill()
+                    asteroid_killed = True
+                    break  # No need to check other shots for this asteroid
+            if asteroid_killed:
+                continue
+
+            # Check if asteroid collides with player
             if asteroid.collides(player):
                 print("Game over!")
                 pygame.quit()
