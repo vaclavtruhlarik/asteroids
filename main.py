@@ -15,6 +15,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+    score = 0
 
     # groups
     updatable = pygame.sprite.Group()
@@ -47,20 +48,29 @@ def main():
                     asteroid.split()
                     shot.kill()
                     asteroid_killed = True
+                    score += 1  # Increase score for destroying an asteroid
                     break  # No need to check other shots for this asteroid
             if asteroid_killed:
                 continue
 
             # Check if asteroid collides with player
-            if asteroid.collides(player):
-                print("Game over!")
-                pygame.quit()
-                return
+            if player.collides(asteroid):
+                player.lives -= 1
+                player.frames_after_hit = FRAMES_AFTER_HIT
+                asteroid.kill()  # Destroy the asteroid
+                if player.lives <= 0:
+                    print("Game over!")
+                    pygame.quit()
+                    return  # Exit the game if player is out of lives
 
         # Draw everything
         screen.fill("black")
         for sprite in drawable:
             sprite.draw(screen)
+        # Draw the score
+        font = pygame.font.Font(None, 36)
+        text = font.render(f"Score: {score}", True, "white")
+        screen.blit(text, (10, 10))
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000  # seconds passed since last frame
