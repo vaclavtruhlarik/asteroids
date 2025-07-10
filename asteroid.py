@@ -1,6 +1,7 @@
 import pygame
 import random
 from circleshape import CircleShape
+from explosion import Explosion
 from constants import ASTEROID_MIN_RADIUS, ASTEROID_KINDS, ASTEROID_SPAWN_RATE
 
 
@@ -56,6 +57,7 @@ class Asteroid(CircleShape):
 
         # Small asteroid is just destroyed
         if self.radius <= ASTEROID_MIN_RADIUS:
+            Explosion(self.position.x, self.position.y)
             return
 
         # Create two smaller asteroids
@@ -68,3 +70,5 @@ class Asteroid(CircleShape):
         asteroid1.velocity = new_velocity1 * 1.2  # Increase speed slightly
         asteroid2 = Asteroid(self.position.x, self.position.y, new_radius)
         asteroid2.velocity = new_velocity2 * 1.2  # Increase speed slightly
+
+        Explosion(self.position.x, self.position.y)

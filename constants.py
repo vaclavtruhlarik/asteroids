@@ -15,3 +15,6 @@ FRAMES_AFTER_HIT = 50  # frames after the player was hit
 SHOT_RADIUS = 5
 PLAYER_SHOOT_SPEED = 500
 PLAYER_SHOOT_COOLDOWN = 0.3  # seconds
+
+EXPLOSION_RADIUS = 50
+EXPLOSION_DURATION = 0.3  # seconds
