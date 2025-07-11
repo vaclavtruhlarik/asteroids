@@ -13,6 +13,7 @@ class NukeShape(PowerUpShape):
 
     def apply(self, player):
         nuke = Nuke(player)
+        player.powerups.append(nuke)
 
     def update(self, dt):
         return super().update(dt)

@@ -64,8 +64,8 @@ def main():
             if asteroid_killed:
                 continue
 
-            # Check if asteroid collides with player
-            if player.frames_after_hit > 0:
+            # If player is invincible, skip collision check
+            if player.is_invincible():
                 continue
             if player.collides(asteroid):
                 player.lives -= 1
