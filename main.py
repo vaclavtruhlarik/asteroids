@@ -5,6 +5,8 @@ from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
 from explosion import Explosion
+from powerups.powerupshape import PowerUpShape
+from powerups.powerupspawner import PowerUpSpawner
 
 
 def main():
@@ -23,14 +25,18 @@ def main():
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
+    powerups = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
     Asteroid.containers = (updatable, drawable, asteroids)
     AsteroidField.containers = updatable
     Shot.containers = (updatable, drawable, shots)
     Explosion.containers = (updatable, drawable)
+    PowerUpShape.containers = (updatable, drawable, powerups)
+    PowerUpSpawner.containers = updatable
 
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
     asteroid_field = AsteroidField()
+    powerup_spawner = PowerUpSpawner()
 
     while True:
         for event in pygame.event.get():
@@ -67,6 +73,12 @@ def main():
                     print("Game over!")
                     pygame.quit()
                     return  # Exit the game if player is out of lives
+
+        # Check if player collides with powerup
+        for powerup in powerups:
+            if player.collides(powerup):
+                powerup.apply(player)
+                powerup.kill()  # Remove the powerup after applying it
 
         # Draw everything
         screen.fill("black")
