@@ -1,6 +1,7 @@
 import pygame
 import random
 from powerups.powerupshape import PowerUpShape
+from powerups.nukeshape import NukeShape
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH, POWERUP_SPAWN_RATE, POWERUP_TYPES
 
 
@@ -20,8 +21,7 @@ class PowerUpSpawner(pygame.sprite.Sprite):
     def spawn(self, position):
         type = self.randomly_select_type()
         if type == "nuke":
-            powerup = PowerUpShape(position.x, position.y)
-            powerup.icon = "nuke"
+            powerup = NukeShape(position.x, position.y)
 
     def update(self, dt):
         self.spawn_timer += dt

@@ -15,7 +15,7 @@ class Explosion(CircleShape):
         if self.lifespan <= 0:
             self.kill()
         else:
-            self.current_radius = EXPLOSION_RADIUS * (
+            self.current_radius = self.radius * (
                 1 - (self.lifespan / EXPLOSION_DURATION)
             )
             self.saturation = max(0, self.saturation - dt / EXPLOSION_DURATION)
@@ -27,4 +27,10 @@ class Explosion(CircleShape):
             (255, 255, 255, alpha),
             (self.position.x, self.position.y),
             int(self.current_radius),
+        )
+
+    def collides(self, other):
+        # Check if the explosion collides with another circle
+        return self.position.distance_to(other.position) < (
+            self.current_radius + other.radius
         )

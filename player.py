@@ -20,6 +20,7 @@ class Player(CircleShape):
         self.shoot_timer = 0.0  # Cooldown time in seconds
         self.lives = PLAYER_LIVES  # Number of lives the player has
         self.frames_after_hit = 0  # Frames after the player was hit
+        self.powerups = []  # List to hold power-ups
 
     def draw(self, screen):
         if self.frames_after_hit > 0:
