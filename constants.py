@@ -23,6 +23,6 @@ POWERUP_RADIUS = 30
 POWERUP_SPAWN_RATE = 3  # seconds
 POWERUP_DURATION = 5  # seconds
 POWERUP_TYPES = {
-    "shield": 1,
-    "nuke": 0,
+    "shield": 0.5,
+    "nuke": 0.5,
 }

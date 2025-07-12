@@ -85,7 +85,7 @@ def main():
 
         for powerup in powerups:
             for asteroid in asteroids:
-                powerup.collides(asteroid)
+                score += powerup.collides(asteroid)
 
         # Draw everything
         screen.fill("black")

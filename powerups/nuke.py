@@ -1,5 +1,6 @@
 import pygame
 from powerups.powerup import PowerUp
+from powerups.powerupshape import PowerUpShape
 from explosion import Explosion
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 
@@ -29,4 +30,21 @@ class Nuke(PowerUp):
             # Destroy the asteroid and create an explosion effect
             other.kill()
             Explosion(other.position.x, other.position.y)
-            return
+            return 1
+        return 0
+
+
+# Nuke power-up that destroys all asteroids in the field
+class NukeShape(PowerUpShape):
+    def __init__(self, x, y):
+        super().__init__(x, y)
+        self.type = "nuke"
+        self.icon = "N"  # Icon for the nuke power-up
+        self.color = "red"  # Color for the nuke power-up
+
+    def apply(self, player):
+        nuke = Nuke(player)
+        player.powerups.append(nuke)
+
+    def update(self, dt):
+        return super().update(dt)
