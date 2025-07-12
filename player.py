@@ -20,7 +20,6 @@ class Player(CircleShape):
         self.shoot_timer = 0.0  # Cooldown time in seconds
         self.lives = PLAYER_LIVES  # Number of lives the player has
         self.frames_after_hit = 0  # Frames after the player was hit
-        self.powerups = []  # List to hold power-ups
 
     def draw(self, screen):
         if self.frames_after_hit > 0:
@@ -39,7 +38,6 @@ class Player(CircleShape):
                 screen, "white", self.triangle(self.position, self.rotation), width=2
             )
         self.draw_lives(screen)  # Draw player lives as triangles
-        self.draw_powerups(screen)  # Draw power-ups
 
     def update(self, dt):
         keys = pygame.key.get_pressed()
@@ -67,18 +65,6 @@ class Player(CircleShape):
             )
             triangle = self.triangle(triangle_pos, 0)
             pygame.draw.polygon(screen, "white", triangle, width=2)
-
-    def draw_powerups(self, screen):
-        for powerup in self.powerups:
-            if powerup.type == "shield":
-                # Draw shield power-up as a circle around the player
-                pygame.draw.circle(
-                    screen,
-                    "blue",
-                    (int(self.position.x), int(self.position.y)),
-                    self.radius + 5,
-                    width=2,
-                )
 
     def triangle(self, position, rotation):
         forward = pygame.Vector2(0, 1).rotate(rotation)
@@ -131,10 +117,4 @@ class Player(CircleShape):
 
     def is_invincible(self):
         # Check if the player is invincible (e.g., after being hit)
-        for powerup in self.powerups:
-            if powerup.type == "shield":
-                return True
-        if self.frames_after_hit > 0:
-            return True
-
-        return False
+        return self.frames_after_hit > 0

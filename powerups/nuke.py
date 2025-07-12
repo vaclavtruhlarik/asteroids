@@ -16,7 +16,7 @@ class Nuke(PowerUp):
         self.lifespan = self.explosion.lifespan
 
     def draw(self, screen):
-        # Draw the nuke effect on the screen
+        # Draw the nuke in the self.explosion class
         pass
 
     def update(self, dt):
@@ -43,8 +43,4 @@ class NukeShape(PowerUpShape):
         self.color = "red"  # Color for the nuke power-up
 
     def apply(self, player):
-        nuke = Nuke(player)
-        player.powerups.append(nuke)
-
-    def update(self, dt):
-        return super().update(dt)
+        Nuke(player)

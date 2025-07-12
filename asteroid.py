@@ -2,7 +2,7 @@ import pygame
 import random
 from circleshape import CircleShape
 from explosion import Explosion
-from constants import ASTEROID_MIN_RADIUS, ASTEROID_KINDS, ASTEROID_SPAWN_RATE
+from constants import ASTEROID_MIN_RADIUS, SCREEN_HEIGHT, SCREEN_WIDTH
 
 
 # Asteroid class representing the asteroids in the game
@@ -37,6 +37,18 @@ class Asteroid(CircleShape):
     def update(self, dt):
         self.position += self.velocity * dt
         self.starting_angle = (self.starting_angle + 1) % 360  # Rotate the asteroid
+        # Check if the asteroid is out of bounds and kill it if so
+        self.check_bounds()
+
+    def check_bounds(self):
+        # Check if the asteroid is out of bounds and kill it if so
+        if (
+            self.position.x < -self.radius
+            or self.position.x > SCREEN_WIDTH + self.radius
+            or self.position.y < -self.radius
+            or self.position.y > SCREEN_HEIGHT + self.radius
+        ):
+            self.kill()
 
     def generate_polygon_points(self):
         # Generate points for the polygon shape of the asteroid
