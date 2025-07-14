@@ -20,12 +20,13 @@ EXPLOSION_RADIUS = 50
 EXPLOSION_DURATION = 0.3  # seconds
 
 POWERUP_RADIUS = 30
-POWERUP_SPAWN_RATE = 5  # seconds
+POWERUP_SPAWN_RATE = 10  # seconds
 POWERUP_SHAPE_DURATION = 8  # seconds
 POWERUP_LIFESPAN = 5  # seconds
 POWERUP_TYPES = {
-    "shield": 0,
-    "nuke": 0,
-    "laser": 0,
-    "triple_shot": 1,
+    "shield": 0.2,
+    "nuke": 0.2,
+    "laser": 0.2,
+    "triple_shot": 0.2,
+    "boost": 0.2,
 }

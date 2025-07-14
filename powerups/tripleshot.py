@@ -1,7 +1,6 @@
 import pygame
 from powerups.powerup import PowerUp
 from powerups.powerupshape import PowerUpShape
-from explosion import Explosion
 from shot import Shot
 from constants import POWERUP_LIFESPAN, PLAYER_SHOOT_SPEED
 
@@ -13,10 +12,6 @@ class TripleShot(PowerUp):
         self.lifespan = POWERUP_LIFESPAN  # Duration of the triple shot effect
         self.type = "triple_shot"
         self.player = player
-
-    def draw(self, screen):
-        # Draw the triple shot effect (if needed)
-        pass
 
     def update(self, dt):
         self.lifespan -= dt
@@ -40,8 +35,8 @@ class TripleShot(PowerUp):
         )
 
     def collides(self, other):
-        # Check if the triple shot collides with any other object
-        return 0  # No collision logic for triple shot itself
+        # Triple shot power-up does not collide with other objects
+        return 0
 
 
 # Triple shot power-up that allows the player to shoot three bullets at once
