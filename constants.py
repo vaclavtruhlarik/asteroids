@@ -24,7 +24,8 @@ POWERUP_SPAWN_RATE = 5  # seconds
 POWERUP_SHAPE_DURATION = 8  # seconds
 POWERUP_LIFESPAN = 5  # seconds
 POWERUP_TYPES = {
-    "shield": 0.4,
-    "nuke": 0.2,
-    "laser": 0.4,
+    "shield": 0,
+    "nuke": 0,
+    "laser": 0,
+    "triple_shot": 1,
 }

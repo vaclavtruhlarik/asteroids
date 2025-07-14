@@ -20,6 +20,7 @@ class Player(CircleShape):
         self.shoot_timer = 0.0  # Cooldown time in seconds
         self.lives = PLAYER_LIVES  # Number of lives the player has
         self.frames_after_hit = 0  # Frames after the player was hit
+        self.speed = PLAYER_SPEED  # Speed of the player
 
     def draw(self, screen):
         if self.frames_after_hit > 0:
@@ -80,7 +81,7 @@ class Player(CircleShape):
 
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
-        self.position += forward * PLAYER_SPEED * dt
+        self.position += forward * self.speed * dt
 
     def shoot(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)

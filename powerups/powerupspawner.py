@@ -4,6 +4,7 @@ from powerups.powerupshape import PowerUpShape
 from powerups.nuke import NukeShape
 from powerups.shield import ShieldShape
 from powerups.laser import LaserShape
+from powerups.tripleshot import TripleShotShape
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH, POWERUP_SPAWN_RATE, POWERUP_TYPES
 
 
@@ -28,6 +29,8 @@ class PowerUpSpawner(pygame.sprite.Sprite):
             powerup = ShieldShape(position.x, position.y)
         elif type == "laser":
             powerup = LaserShape(position.x, position.y)
+        elif type == "triple_shot":
+            powerup = TripleShotShape(position.x, position.y)
 
     def update(self, dt):
         self.spawn_timer -= dt
