@@ -1,13 +1,13 @@
 import pygame
 from circleshape import CircleShape
-from constants import POWERUP_RADIUS, POWERUP_DURATION
+from constants import POWERUP_RADIUS, POWERUP_SHAPE_DURATION
 
 
 # Base class for power-ups
 class PowerUpShape(CircleShape):
     def __init__(self, x, y):
         super().__init__(x, y, POWERUP_RADIUS)
-        self.lifespan = POWERUP_DURATION
+        self.lifespan = POWERUP_SHAPE_DURATION
         self.type = None
         self.color = "white"
         self.icon = "TODO"

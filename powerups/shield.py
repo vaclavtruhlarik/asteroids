@@ -2,13 +2,14 @@ import pygame
 from powerups.powerup import PowerUp
 from powerups.powerupshape import PowerUpShape
 from explosion import Explosion
+from constants import POWERUP_LIFESPAN
 
 
 # Shield power-up that provides temporary invincibility to the player
 class Shield(PowerUp):
     def __init__(self, player):
         super().__init__()
-        self.lifespan = 5.0  # Duration of the shield effect
+        self.lifespan = POWERUP_LIFESPAN
         self.type = "shield"
         self.player = player
         self.radius = 50  # Radius of the shield effect
